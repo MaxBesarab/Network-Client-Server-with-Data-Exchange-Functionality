@@ -1,0 +1,23 @@
+#ifndef ACCEPTCLIENT_H
+#define ACCEPTCLIENT_H
+
+
+#include <QThread>s
+#include <QString>
+#include <winsock2.h>
+
+class acceptClient: public QThread
+{
+    Q_OBJECT
+public:
+    explicit acceptClient(QObject *parent = 0, SOCKET* client_sock = 0);
+    void run();
+    bool acceptedClient;
+    SOCKET* client;
+private:
+    SOCKET* client_socket;
+signals:
+    SOCKET* startClientAccept(SOCKET* sock);
+};
+
+#endif // ACCEPTCLIENT_H
